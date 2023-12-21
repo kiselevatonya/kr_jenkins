@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform("org.junit:junit-bom:5.9.3")
+    testImplementation "org.junit.jupiter:junit-jupiter"
+    testImplementation "org.assertj:assertj-core:3.24.2"
+}
+
+
+group = 'org.douggschwind'
+version = '1.0-SNAPSHOT'
+description = 'Games'
+
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+test {
+    useJUnitPlatform()
+
+    reports {
+        junitXml.destination = file("$buildDir/../test-results/test")
+    }
+}
+
+
+
+tasks.withType(Test) {
+    systemProperty "file.encoding", "UTF-8"
+}
+
+
+
+
